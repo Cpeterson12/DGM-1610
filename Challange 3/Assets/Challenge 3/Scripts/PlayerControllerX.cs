@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public bool gameOver;
+    public bool gameOver = false;
+    public bool isLowEnough;
 
     public float floatForce;
     public float gravityModifier = 1.5f;
@@ -16,7 +17,8 @@ public class PlayerControllerX : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip moneySound;
     public AudioClip explodeSound;
-
+    
+    public float bounce = 15.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +27,27 @@ public class PlayerControllerX : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         // Apply a small upward force at the start of the game
-      
+        playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        // makes it so if you are to high you can't float
+        if (transform.position.y > 16)
+        {
+            isLowEnough = false;
+        }
+        else 
+        {
+            isLowEnough = true;
+        }
         // While space is pressed and player is low enough, float up
-        if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
+        if (Input.GetKey(KeyCode.Space) && isLowEnough && !gameOver)
         {
             playerRb.AddForce(Vector3.up * floatForce);
+            Debug.Log("floating");
         }
     }
 
@@ -62,7 +74,7 @@ public class PlayerControllerX : MonoBehaviour
 
          if (other.gameObject.tag == "Ground" && gameOver!= true)
         {
-            playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * bounce, ForceMode.Impulse);
         }
 
 
