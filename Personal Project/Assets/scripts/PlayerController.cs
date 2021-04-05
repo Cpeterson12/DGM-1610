@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Player controls
       if (Input.GetKey(KeyCode.D) && !isGameOver)
       {
          transform.Translate(Vector3.right * Time.deltaTime * speed);
@@ -53,6 +53,15 @@ public class PlayerController : MonoBehaviour
       } 
       
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Goal"))
+        {
+         Destroy(other.gameObject);
+         
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -62,10 +71,11 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
-        else if (collision.gameObject.CompareTag("obstacle"))
+        else if(collision.gameObject.CompareTag("obstacle"))
         {
             isGameOver = true;
             Debug.Log("GAME OVER! ! !");
+
         }
     
     }
