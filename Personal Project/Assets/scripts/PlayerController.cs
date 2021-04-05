@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     private Rigidbody playerRb;
 
+    public GameObject projectilePrefab;
+    public float swordDuration = 0.5f;
+
     public bool isOnGround = true;
     public bool isGameOver = false;
     // Start is called before the first frame update
@@ -33,11 +36,22 @@ public class PlayerController : MonoBehaviour
          transform.Translate(Vector3.left * Time.deltaTime * speed);
       }
 
-      if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !isGameOver)
+      if (Input.GetKeyDown(KeyCode.W) && isOnGround && !isGameOver)
       {
           playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
           isOnGround = false;
       }
+      if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
+      {
+         Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+         StartCoroutine(DestroySword());
+      }
+        
+      IEnumerator DestroySword()
+      {
+            yield return new WaitForSeconds(swordDuration);
+      } 
+      
     }
 
     private void OnCollisionEnter(Collision collision)
