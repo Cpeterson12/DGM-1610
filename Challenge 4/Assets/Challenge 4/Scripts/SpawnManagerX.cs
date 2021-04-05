@@ -12,6 +12,7 @@ public class SpawnManagerX : MonoBehaviour
     private float spawnZMax = 25; // set max spawn Z
 
     public int enemyCount;
+    public float enemySpeed = 50;
     public int waveCount = 1;
 
 
@@ -20,7 +21,7 @@ public class SpawnManagerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Powerup").Length;
+        enemyCount = FindObjectsOfType<EnemyX>().Length;
 
         if (enemyCount == 0)
         {
@@ -49,12 +50,13 @@ public class SpawnManagerX : MonoBehaviour
         }
 
         // Spawn number of enemy balls based on wave number
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
 
         waveCount++;
+        enemyCount += 50;
         ResetPlayerPosition(); // put player back at start
 
     }
