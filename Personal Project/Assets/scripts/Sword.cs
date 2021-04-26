@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    private Rigidbody swordRb;
+    public float speed = 10.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+          transform.Translate(Vector3.forward * Time.deltaTime * speed);
+          Destroy(gameObject, 0.05f);
     }
 }

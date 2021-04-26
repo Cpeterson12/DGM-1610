@@ -44,13 +44,7 @@ public class PlayerController : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
       {
          Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-         StartCoroutine(DestroySword());
       }
-        
-      IEnumerator DestroySword()
-      {
-            yield return new WaitForSeconds(swordDuration);
-      } 
       
     }
     
@@ -59,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("Goal"))
         {
          Destroy(other.gameObject);
-         
+
         }
     }
 
