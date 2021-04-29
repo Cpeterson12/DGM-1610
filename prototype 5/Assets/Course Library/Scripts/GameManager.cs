@@ -20,7 +20,11 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
    
     public TextMeshProUGUI scoreText;
+
     public TextMeshProUGUI gameOverText;
+
+    private PlayerController playercontroller;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +49,13 @@ public class GameManager : MonoBehaviour
 
  public void GameOver()
  {
-   gameOverText.gameObject.SetActive(true);
-   isGameActive = false;
-   retryButton.gameObject.SetActive(true);
+   if(playercontroller(isGameOver = true))
+   {
+      gameOverText.gameObject.SetActive(true);
+     isGameActive = false;
+     retryButton.gameObject.SetActive(true);
+   }
+  
  }
 
  public void ResetGame()
@@ -58,7 +66,7 @@ public class GameManager : MonoBehaviour
  public void StartGame(int difficulty)
  {
     isGameActive = true;
-   titleScreen.gameObject.SetActive(false);
+    titleScreen.gameObject.SetActive(false);
     spawnRate /= difficulty;
     UpdateScore(0);
     scoreText.text = " Score: " + score;

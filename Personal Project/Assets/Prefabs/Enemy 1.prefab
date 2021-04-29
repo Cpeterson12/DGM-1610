@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1681587634137010493}
   - component: {fileID: 1681587634137010492}
   - component: {fileID: 1681587634137010488}
-  - component: {fileID: 1681587634137010489}
+  - component: {fileID: 8250134100761514458}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: obstacle
@@ -93,8 +93,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.52401567
+  m_Center: {x: -0.0070782197, y: -2.0648228e-11, z: -0.015592371}
 --- !u!54 &1681587634137010488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1681587634137010489
+--- !u!114 &8250134100761514458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c0627f11f760547a776cdb01704900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 0

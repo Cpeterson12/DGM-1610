@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
     public float swordDuration = 0.5f;
+    public Transform firePosition;
 
     public bool isOnGround = true;
     public bool isGameOver = false;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
       }
       if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
       {
-         Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+         Instantiate(projectilePrefab, firePosition.position, projectilePrefab.transform.rotation);
       }
       
     }
@@ -53,11 +54,11 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("Goal"))
         {
          Destroy(other.gameObject);
-
+         Debug.Log("Game Win!!");
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
 
